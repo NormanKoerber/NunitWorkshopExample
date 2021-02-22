@@ -5,11 +5,11 @@ namespace NUnitWorkshopExample
 {
     internal class PowerSupply
     {
-        private readonly SerialPort _serialPort;
+        private readonly ISerialPort _serialPort;
 
-        public PowerSupply(string port)
+        public PowerSupply(ISerialPort port)
         {
-            _serialPort = new SerialPort(port);
+            _serialPort = port ?? throw new ArgumentNullException(nameof(port));
             _serialPort.Open();
         }
 
