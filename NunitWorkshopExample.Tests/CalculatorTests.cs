@@ -25,21 +25,13 @@ namespace NunitWorkshopExample.Tests
             // Assert.AreEqual(57, sum);
         }
 
-        [Test]
-        public void AddWithOverflowShouldThrowAnOverflowException()
+        [TestCase(int.MaxValue, 10, TestName = "AddWithPositiveOverflowShouldThrowAnOverflowException")]
+        [TestCase(int.MinValue, -10, TestName = "AddWithNegativeOverflowShouldThrowAnOverflowException")]
+        public void AddWithOverflowShouldThrowAnOverflowException(int addend1, int addend2)
         {
             var calculator = new Calculator();
 
-            Assert.That(() => calculator.Add(int.MaxValue, 10), Throws.InstanceOf<OverflowException>());
-        }
-
-
-        [Test]
-        public void AddWithNegativeOverflowShouldThrowAnOverflowException()
-        {
-            var calculator = new Calculator();
-
-            Assert.That(() => calculator.Add(int.MinValue, -10), Throws.InstanceOf<OverflowException>());
+            Assert.That(() => calculator.Add(addend1, addend2), Throws.InstanceOf<OverflowException>());
         }
     }
 }
