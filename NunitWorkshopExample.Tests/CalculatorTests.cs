@@ -33,5 +33,33 @@ namespace NunitWorkshopExample.Tests
 
             Assert.That(() => calculator.Add(addend1, addend2), Throws.InstanceOf<OverflowException>());
         }
+
+        [Test]
+        public void DivisionWithoutRestShouldReturnCorrectValue()
+        {
+            var calculator = new Calculator();
+
+            var divisionResult = calculator.Divide(100, 5);
+
+            Assert.That(divisionResult.Value, Is.EqualTo(20));
+        }
+
+        [Test]
+        public void DivisionWithoutRestShouldReturnCorrectRest()
+        {
+            var calculator = new Calculator();
+
+            var divisionResult = calculator.Divide(100, 6);
+
+            Assert.That(divisionResult.Rest, Is.EqualTo(4));
+        }
+
+        [Test]
+        public void DivisionByZeroShoulThrowDivideByZeroException()
+        {
+            var calculator = new Calculator();
+
+            Assert.Throws<DivideByZeroException>(() => calculator.Divide(100, 0));
+        }
     }
 }
