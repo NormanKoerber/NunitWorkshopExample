@@ -4,7 +4,7 @@
     {
         public int Add(int value1, int value2)
         {
-            return value1 + value2;
+            return checked(value1 + value2);
         }
 
         public DivisionResult Divide(int dividend, int divisor)
